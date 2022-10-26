@@ -1,5 +1,6 @@
 import SortButtons from './components/SortButtons';
 import StopsFilter from './components/StopsFilter';
+import TicketCard from './components/TicketCard';
 import Logo from './images/Logo.png';
 
 function App() {
@@ -13,6 +14,11 @@ function App() {
           <StopsFilter />
           <div className="tickets">
             <SortButtons />
+            <TicketCard />
+            <TicketCard />
+            <TicketCard />
+            <TicketCard />
+            <TicketCard />
           </div>
         </div>
       </div>
