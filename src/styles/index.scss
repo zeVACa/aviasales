@@ -19,11 +19,15 @@ body {
   max-width: 960px;
   margin: 0 auto;
   min-height: 100vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .content-wrapper {
   display: flex;
   justify-content: space-between;
+  max-width: 774px;
 }
 
 .logo-wrapper {
@@ -36,5 +40,7 @@ body {
 }
 
 .tickets {
-  border: 1px solid blue;
+  margin-left: 20px;
+  width: 502px;
+  flex-shrink: 1 1;
 }

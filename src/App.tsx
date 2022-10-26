@@ -1,3 +1,4 @@
+import SortButtons from './components/SortButtons';
 import StopsFilter from './components/StopsFilter';
 import Logo from './images/Logo.png';
 
@@ -10,7 +11,9 @@ function App() {
         </div>
         <div className="content-wrapper">
           <StopsFilter />
-          <div className="tickets"></div>
+          <div className="tickets">
+            <SortButtons />
+          </div>
         </div>
       </div>
     </div>
