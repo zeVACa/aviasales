@@ -19,7 +19,9 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "react/react-in-jsx-scope": "off",
+    "react/react-in-jsx-scope": 0,
+    "default-param-last": "off",
+    "@typescript-eslint/default-param-last": "off",
     "import/extensions": [
       "error",
       "ignorePackages",
