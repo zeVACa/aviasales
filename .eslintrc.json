@@ -31,7 +31,9 @@
         "ts": "never",
         "tsx": "never"
       }
-    ]
+    ],
+    "object-curly-newline": "off"
+    // "max-len": ["error", { "code": 120 }]
   },
   "settings": {
     "import/resolver": {

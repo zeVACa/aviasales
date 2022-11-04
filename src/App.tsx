@@ -1,6 +1,5 @@
-import SortButtons from './components/SortButtons';
 import StopsFilter from './components/StopsFilter';
-import TicketCard from './components/TicketCard';
+import TicketsList from './components/TicketsList';
 import Logo from './images/Logo.png';
 
 function App() {
@@ -12,14 +11,7 @@ function App() {
         </div>
         <div className="content-wrapper">
           <StopsFilter />
-          <div className="tickets">
-            <SortButtons />
-            <TicketCard />
-            <TicketCard />
-            <TicketCard />
-            <TicketCard />
-            <TicketCard />
-          </div>
+          <TicketsList />
         </div>
       </div>
     </div>
