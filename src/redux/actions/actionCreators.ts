@@ -25,7 +25,9 @@ export const transfersFilterThreeStopsToggle = () => ({
 export const ticketsLoad = () => async (dispatch: Dispatch<ITicketsAction>) => {
   const searchIdresponse = await fetch('https://front-test.dev.aviasales.ru/search');
   const { searchId } = await searchIdresponse.json();
-  const ticketsResponse = await fetch(`https://front-test.dev.aviasales.ru/tickets??searchId=${searchId}`);
+  const ticketsResponse = await fetch(
+    `https://front-test.dev.aviasales.ru/tickets??searchId=${searchId}`,
+  );
   const { tickets } = await ticketsResponse.json();
   dispatch({ type: TICKETS_LOADED, payload: tickets });
 };

@@ -29,6 +29,7 @@ body {
   justify-content: space-between;
   max-width: 774px;
   align-items: flex-start;
+  padding-bottom: 20px;
 }
 
 .logo-wrapper {
@@ -44,4 +45,14 @@ body {
   margin-left: 20px;
   width: 502px;
   flex-shrink: 1 1;
+}
+
+.show-more-button {
+  background: $primary-color;
+  display: flex;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
 }

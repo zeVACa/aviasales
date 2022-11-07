@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { ClipLoader } from 'react-spinners';
 import useActions from '../../redux/hooks/useActions';
@@ -11,10 +11,13 @@ function TicketsList() {
   const tickets = useTypedSelector((state) => state.tickets.data);
   const isTicketsLoading = useTypedSelector((state) => state.tickets.isLoading);
   const filters = useTypedSelector((state) => state.transfersForm);
+  const sortBy = useTypedSelector((state) => state.sortBy);
 
   useEffect(() => {
     ticketsLoad();
   }, []);
+
+  const [showedTicketsNumber, setShowedTicketsNumber] = useState<number>(5);
 
   console.log('tickets', tickets);
 
@@ -24,22 +27,32 @@ function TicketsList() {
     justifyContent: 'center',
   };
 
-  const filteredTickets = tickets.filter((ticket) => {
-    const stopsNumberForward = ticket.segments[0].stops.length;
-    const stopsNumberBackward = ticket.segments[1].stops.length;
+  const filteredAndSortedTickets = tickets
+    .filter((ticket) => {
+      const stopsNumberForward = ticket.segments[0].stops.length;
+      const stopsNumberBackward = ticket.segments[1].stops.length;
 
-    if (
-      filters.isAllStopsChecked ||
-      (filters.isNonStopsChecked && stopsNumberForward === 0 && stopsNumberBackward === 0) ||
-      (filters.isOneStopsChecked && stopsNumberForward === 1 && stopsNumberBackward === 1) ||
-      (filters.isTwoStopsChecked && stopsNumberForward === 2 && stopsNumberBackward === 2) ||
-      (filters.isThreeStopsChecked && stopsNumberForward === 3 && stopsNumberBackward === 3)
-    ) {
-      return true;
-    }
+      if (
+        filters.isAllStopsChecked ||
+        (filters.isNonStopsChecked && stopsNumberForward === 0 && stopsNumberBackward === 0) ||
+        (filters.isOneStopsChecked && stopsNumberForward === 1 && stopsNumberBackward === 1) ||
+        (filters.isTwoStopsChecked && stopsNumberForward === 2 && stopsNumberBackward === 2) ||
+        (filters.isThreeStopsChecked && stopsNumberForward === 3 && stopsNumberBackward === 3)
+      ) {
+        return true;
+      }
 
-    return false;
-  });
+      return false;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'price') return a.price - b.price;
+      return (
+        a.segments[0].duration +
+        a.segments[1].duration -
+        (b.segments[0].duration + b.segments[1].duration)
+      );
+    })
+    .slice(0, showedTicketsNumber);
 
   return (
     <div className="tickets">
@@ -49,7 +62,7 @@ function TicketsList() {
           <ClipLoader color="#2196F3" size={50} />
         </div>
       )}
-      {filteredTickets.map((ticket) => (
+      {filteredAndSortedTickets.map((ticket) => (
         <TicketCard
           key={ticket.id}
           price={ticket.price}
@@ -58,6 +71,16 @@ function TicketsList() {
           backward={ticket.segments[1]}
         />
       ))}
+      {!isTicketsLoading && (
+        <div
+          className="show-more-button"
+          onClick={() =>
+            setShowedTicketsNumber((prevShowedTicketsNumber) => prevShowedTicketsNumber + 5)
+          }
+        >
+          Показать еще 5 билетов!
+        </div>
+      )}
     </div>
   );
 }
