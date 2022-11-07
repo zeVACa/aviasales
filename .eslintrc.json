@@ -32,7 +32,18 @@
         "tsx": "never"
       }
     ],
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "operator-linebreak": [
+      "error",
+      "after",
+      {
+        "overrides": {
+          ":": "before",
+          "||": "after",
+          "?": "before"
+        }
+      }
+    ]
     // "max-len": ["error", { "code": 120 }]
   },
   "settings": {

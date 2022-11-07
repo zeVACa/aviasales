@@ -46,13 +46,6 @@ function getTravelTime(durationInMinutes: number): string {
     : hoursAndMinutes;
 }
 
-console.log('getTravelTime()', getTravelTime(59));
-console.log('getTravelTime()', getTravelTime(60));
-console.log('getTravelTime()', getTravelTime(61));
-console.log('getTravelTime()', getTravelTime(119));
-console.log('getTravelTime()', getTravelTime(120));
-console.log('getTravelTime()', getTravelTime(121));
-
 function getStops(stops: number): string {
   if (stops === 0) return '0 пересадок';
   if (stops === 1) return '1 пересадка';
