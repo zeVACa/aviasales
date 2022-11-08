@@ -1,4 +1,5 @@
 import { Dispatch } from 'redux';
+import { ITicket } from '../../types';
 import { ITicketsAction } from '../reducers/ticketsReducer';
 import {
   SORT_PRICE,
@@ -23,11 +24,26 @@ export const transfersFilterThreeStopsToggle = () => ({
 });
 
 export const ticketsLoad = () => async (dispatch: Dispatch<ITicketsAction>) => {
+  const allTickets: ITicket[] = [];
+
   const searchIdresponse = await fetch('https://front-test.dev.aviasales.ru/search');
   const { searchId } = await searchIdresponse.json();
-  const ticketsResponse = await fetch(
-    `https://front-test.dev.aviasales.ru/tickets??searchId=${searchId}`,
-  );
-  const { tickets } = await ticketsResponse.json();
-  dispatch({ type: TICKETS_LOADED, payload: tickets });
+
+  let isNotLastTicketsPack = true;
+  while (isNotLastTicketsPack) {
+    /* eslint-disable no-await-in-loop */
+
+    const ticketsResponse = await fetch(
+      `https://front-test.dev.aviasales.ru/tickets??searchId=${searchId}`,
+    );
+
+    /* eslint-disable no-continue */
+    if (ticketsResponse.status !== 200) continue;
+    const { tickets, stop } = await ticketsResponse.json();
+
+    allTickets.push(...tickets);
+    if (stop) isNotLastTicketsPack = false;
+  }
+
+  dispatch({ type: TICKETS_LOADED, payload: allTickets });
 };

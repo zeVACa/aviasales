@@ -8,7 +8,7 @@ import TicketCard from '../TicketCard';
 
 function TicketsList() {
   const { ticketsLoad } = useActions();
-  const tickets = useTypedSelector((state) => state.tickets.data);
+  const allTickets = useTypedSelector((state) => state.tickets.data);
   const isTicketsLoading = useTypedSelector((state) => state.tickets.isLoading);
   const filters = useTypedSelector((state) => state.transfersForm);
   const sortBy = useTypedSelector((state) => state.sortBy);
@@ -19,15 +19,13 @@ function TicketsList() {
 
   const [showedTicketsNumber, setShowedTicketsNumber] = useState<number>(5);
 
-  console.log('tickets', tickets);
-
   const spinerWrapper = {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
   };
 
-  const filteredAndSortedTickets = tickets
+  const filteredAndSortedTickets = allTickets
     .filter((ticket) => {
       const stopsNumberForward = ticket.segments[0].stops.length;
       const stopsNumberBackward = ticket.segments[1].stops.length;
@@ -62,16 +60,20 @@ function TicketsList() {
           <ClipLoader color="#2196F3" size={50} />
         </div>
       )}
-      {filteredAndSortedTickets.map((ticket) => (
-        <TicketCard
-          key={ticket.id}
-          price={ticket.price}
-          iataCode={ticket.carrier}
-          forward={ticket.segments[0]}
-          backward={ticket.segments[1]}
-        />
-      ))}
-      {!isTicketsLoading && (
+      {!isTicketsLoading && filteredAndSortedTickets.length === 0 ? (
+        <h3>Не найдено ни одного билета</h3>
+      ) : (
+        filteredAndSortedTickets.map((ticket) => (
+          <TicketCard
+            key={ticket.id}
+            price={ticket.price}
+            iataCode={ticket.carrier}
+            forward={ticket.segments[0]}
+            backward={ticket.segments[1]}
+          />
+        ))
+      )}
+      {!isTicketsLoading && filteredAndSortedTickets.length !== 0 && (
         <div
           className="show-more-button"
           onClick={() =>
