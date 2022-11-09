@@ -6,13 +6,15 @@ function App() {
   return (
     <div className="App">
       <div className="page-wrapper">
-        <div className="logo-wrapper">
-          <img src={Logo} alt="123" className="logo" />
-        </div>
-        <div className="content-wrapper">
-          <StopsFilter />
-          <TicketsList />
-        </div>
+        <main>
+          <div className="logo-wrapper">
+            <img src={Logo} alt="123" className="logo" />
+          </div>
+          <div className="content-wrapper">
+            <StopsFilter />
+            <TicketsList />
+          </div>
+        </main>
       </div>
     </div>
   );

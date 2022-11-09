@@ -14,6 +14,20 @@ body {
   background-color: #e5e5e5;
 }
 
+.pseudo-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  -webkit-clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+  clip-path: polygon(0px 0px, 0px 0px, 0px 0px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+
 .page-wrapper {
   background-color: #f3f7fa;
   max-width: 960px;
@@ -50,9 +64,16 @@ body {
 .show-more-button {
   background: $primary-color;
   display: flex;
+  width: 100%;
+  border: none;
+  font-size: 14px;
   justify-content: center;
   padding: 15px 20px;
   border-radius: 5px;
   color: #fff;
   cursor: pointer;
+}
+
+.show-more-button:focus {
+  outline: $primary-outline;
 }

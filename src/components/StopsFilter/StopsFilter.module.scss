@@ -45,10 +45,6 @@
   margin-right: 10px;
 }
 
-.realCheckbox {
-  display: none;
-}
-
 .realCheckbox:checked ~ .customCheckbox::before {
   content: url('../../images/check-mark.svg');
   justify-content: center;
@@ -67,4 +63,8 @@
 
 .realCheckbox:checked ~ .customCheckbox {
   border: 1px solid $primary-color;
+}
+
+.realCheckbox:focus ~ .customCheckbox {
+  outline: $primary-outline;
 }

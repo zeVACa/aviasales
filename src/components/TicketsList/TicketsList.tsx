@@ -74,14 +74,14 @@ function TicketsList() {
         ))
       )}
       {!isTicketsLoading && filteredAndSortedTickets.length !== 0 && (
-        <div
+        <button
           className="show-more-button"
           onClick={() =>
             setShowedTicketsNumber((prevShowedTicketsNumber) => prevShowedTicketsNumber + 5)
           }
         >
           Показать еще 5 билетов!
-        </div>
+        </button>
       )}
     </div>
   );
