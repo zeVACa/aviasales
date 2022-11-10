@@ -35,33 +35,6 @@ function TicketsList() {
     marginBottom: '20px',
   };
 
-  // const filteredAndSortedTickets = allTickets
-  //   .filter((ticket) => {
-  //     const stopsNumberForward = ticket.segments[0].stops.length;
-  //     const stopsNumberBackward = ticket.segments[1].stops.length;
-
-  //     if (
-  //       filters.isAllStopsChecked ||
-  //       (filters.isNonStopsChecked && stopsNumberForward === 0 && stopsNumberBackward === 0) ||
-  //       (filters.isOneStopsChecked && stopsNumberForward === 1 && stopsNumberBackward === 1) ||
-  //       (filters.isTwoStopsChecked && stopsNumberForward === 2 && stopsNumberBackward === 2) ||
-  //       (filters.isThreeStopsChecked && stopsNumberForward === 3 && stopsNumberBackward === 3)
-  //     ) {
-  //       return true;
-  //     }
-
-  //     return false;
-  //   })
-  //   .sort((a, b) => {
-  //     if (sortBy === 'price') return a.price - b.price;
-  //     return (
-  //       a.segments[0].duration +
-  //       a.segments[1].duration -
-  //       (b.segments[0].duration + b.segments[1].duration)
-  //     );
-  //   })
-  //   .slice(0, showedTicketsNumber);
-
   const filteredTickets: ITicket[] = filterTickets(
     allTickets,
     isAllStopsChecked,
