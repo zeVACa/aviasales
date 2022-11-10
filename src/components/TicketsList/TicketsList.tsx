@@ -1,5 +1,4 @@
 import { useEffect, useState, useMemo } from 'react';
-
 import { ClipLoader } from 'react-spinners';
 import useActions from '../../redux/hooks/useActions';
 import useTypedSelector from '../../redux/hooks/useTypedSelector';
@@ -35,21 +34,19 @@ function TicketsList() {
     marginBottom: '20px',
   };
 
-  const filteredTickets: ITicket[] = filterTickets(
-    allTickets,
+  const sortedTickets: ITicket[] = useMemo(
+    () => sortTickets(allTickets, sortBy),
+    [sortBy, allTickets],
+  );
+
+  const filteredAndSortedTickets = filterTickets(
+    sortedTickets,
     isAllStopsChecked,
     isNonStopsChecked,
     isOneStopsChecked,
     isTwoStopsChecked,
     isThreeStopsChecked,
   );
-
-  const filteredAndSortedTickets: ITicket[] = useMemo(
-    () => sortTickets(filteredTickets, sortBy),
-    [sortBy, allTickets],
-  );
-
-  // const filteredAndSortedTickets: ITicket[] = sortTickets(filteredTickets, sortBy);
 
   const showedTickets: ITicket[] = filteredAndSortedTickets.slice(0, showedTicketsNumber);
 
