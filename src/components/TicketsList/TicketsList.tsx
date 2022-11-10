@@ -46,8 +46,10 @@ function TicketsList() {
 
   const filteredAndSortedTickets: ITicket[] = useMemo(
     () => sortTickets(filteredTickets, sortBy),
-    [sortBy],
+    [sortBy, allTickets],
   );
+
+  // const filteredAndSortedTickets: ITicket[] = sortTickets(filteredTickets, sortBy);
 
   const showedTickets: ITicket[] = filteredAndSortedTickets.slice(0, showedTicketsNumber);
 
@@ -59,7 +61,7 @@ function TicketsList() {
           <ClipLoader color="#2196F3" size={50} />
         </div>
       )}
-      {!isTicketsLoading && showedTickets.length === 0 ? (
+      {!isTicketsLoading && filteredAndSortedTickets.length === 0 ? (
         <h3>Не найдено ни одного билета</h3>
       ) : (
         showedTickets.map((ticket) => (
@@ -72,7 +74,7 @@ function TicketsList() {
           />
         ))
       )}
-      {!isTicketsLoading && showedTickets.length !== 0 && (
+      {!isTicketsLoading && filteredAndSortedTickets.length !== 0 && (
         <button
           className="show-more-button"
           onClick={() =>
