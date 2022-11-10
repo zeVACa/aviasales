@@ -23,6 +23,7 @@ function TicketsList() {
     width: '100%',
     display: 'flex',
     justifyContent: 'center',
+    marginBottom: '20px',
   };
 
   const filteredAndSortedTickets = allTickets

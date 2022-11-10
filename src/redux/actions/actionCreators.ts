@@ -4,12 +4,13 @@ import { ITicketsAction } from '../reducers/ticketsReducer';
 import {
   SORT_PRICE,
   SORT_SPEED,
-  TICKETS_LOADED,
+  ALL_TICKETS_LOADED,
   TRANSFERS_FILTER_ALL_STOPS_TOGGLE,
   TRANSFERS_FILTER_NON_STOPS_TOGGLE,
   TRANSFERS_FILTER_ONE_STOPS_TOGGLE,
   TRANSFERS_FILTER_THREE_STOPS_TOGGLE,
   TRANSFERS_FILTER_TWO_STOPS_TOGGLE,
+  FIRST_TICKETS_PACK_LOADED,
 } from './actionTypes';
 
 export const sortPrice = () => ({ type: SORT_PRICE });
@@ -30,6 +31,7 @@ export const ticketsLoad = () => async (dispatch: Dispatch<ITicketsAction>) => {
   const { searchId } = await searchIdresponse.json();
 
   let isNotLastTicketsPack = true;
+  let isFirstTicketsPackLoaded = false;
   while (isNotLastTicketsPack) {
     /* eslint-disable no-await-in-loop */
 
@@ -41,9 +43,14 @@ export const ticketsLoad = () => async (dispatch: Dispatch<ITicketsAction>) => {
     if (ticketsResponse.status !== 200) continue;
     const { tickets, stop } = await ticketsResponse.json();
 
+    if (!isFirstTicketsPackLoaded) {
+      isFirstTicketsPackLoaded = true;
+      dispatch({ type: FIRST_TICKETS_PACK_LOADED, payload: tickets });
+    }
+
     allTickets.push(...tickets);
     if (stop) isNotLastTicketsPack = false;
   }
 
-  dispatch({ type: TICKETS_LOADED, payload: allTickets });
+  dispatch({ type: ALL_TICKETS_LOADED, payload: allTickets });
 };

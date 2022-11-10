@@ -1,6 +1,5 @@
-import { v4 as uuid } from 'uuid';
 import { ITicket } from '../../types';
-import { TICKETS_LOADED } from '../actions/actionTypes';
+import { ALL_TICKETS_LOADED, FIRST_TICKETS_PACK_LOADED } from '../actions/actionTypes';
 
 interface IState {
   data: ITicket[];
@@ -19,12 +18,15 @@ const initialState: IState = {
 
 function ticketsReducer(state: IState = initialState, action: ITicketsAction): IState {
   switch (action.type) {
-    case TICKETS_LOADED:
+    case FIRST_TICKETS_PACK_LOADED:
       return {
-        data: action.payload.map((ticket) => ({
-          ...ticket,
-          id: uuid(),
-        })),
+        ...state,
+        data: action.payload,
+      };
+
+    case ALL_TICKETS_LOADED:
+      return {
+        data: [...state.data, ...action.payload],
         isLoading: false,
       };
 
