@@ -49,6 +49,10 @@ body {
     flex-direction: column;
     align-items: center;
   }
+
+  @media (max-width: $screen-mobile) {
+    padding: 0 10px 20px;
+  }
 }
 
 .logo-wrapper {

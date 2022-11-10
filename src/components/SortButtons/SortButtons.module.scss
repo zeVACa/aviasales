@@ -3,6 +3,10 @@
 .wrapper {
   display: flex;
   margin-bottom: 20px;
+
+  @media (max-width: $screen-mobile) {
+    flex-direction: column;
+  }
 }
 
 .button {
