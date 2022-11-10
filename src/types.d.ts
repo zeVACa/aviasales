@@ -12,7 +12,6 @@ export interface ISegment {
 }
 
 export interface ITicket {
-  id: string;
   // Цена в рублях
   price: number;
   // Код авиакомпании (iata)

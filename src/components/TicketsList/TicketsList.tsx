@@ -63,7 +63,7 @@ function TicketsList() {
       ) : (
         showedTickets.map((ticket) => (
           <TicketCard
-            key={ticket.id}
+            key={`${ticket.carrier} ${ticket.price} ${ticket.segments[0].date} ${ticket.segments[1].date}`}
             price={ticket.price}
             iataCode={ticket.carrier}
             forward={ticket.segments[0]}
