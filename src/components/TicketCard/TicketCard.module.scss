@@ -6,6 +6,10 @@
   padding: 20px;
   border-radius: 5px;
   margin-bottom: 20px;
+
+  @media (max-width: $screen-mobile) {
+    width: 100%;
+  }
 }
 
 .flexRow {

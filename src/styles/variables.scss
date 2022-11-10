@@ -4,4 +4,7 @@ $primary-outline: 1px solid
   darken(
     $color: $primary-color,
     $amount: 20,
-  ); ;
+  );
+
+$screen-tablet: 800px;
+$screen-mobile: 570px;
