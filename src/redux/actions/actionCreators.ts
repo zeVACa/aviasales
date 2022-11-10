@@ -11,10 +11,12 @@ import {
   TRANSFERS_FILTER_THREE_STOPS_TOGGLE,
   TRANSFERS_FILTER_TWO_STOPS_TOGGLE,
   FIRST_TICKETS_PACK_LOADED,
+  SORT_OPTIMAL,
 } from './actionTypes';
 
 export const sortPrice = () => ({ type: SORT_PRICE });
 export const sortSpeed = () => ({ type: SORT_SPEED });
+export const sortOptimal = () => ({ type: SORT_OPTIMAL });
 
 export const transfersFilterAllStopsToggle = () => ({ type: TRANSFERS_FILTER_ALL_STOPS_TOGGLE });
 export const transfersFilterNonStopsToggle = () => ({ type: TRANSFERS_FILTER_NON_STOPS_TOGGLE });

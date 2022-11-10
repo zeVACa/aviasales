@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import classnames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { sortPrice, sortSpeed } from '../../redux/actions/actionCreators';
+import { sortOptimal, sortPrice, sortSpeed } from '../../redux/actions/actionCreators';
 import useTypedSelector from '../../redux/hooks/useTypedSelector';
 import styles from './SortButtons.module.scss';
 
@@ -34,8 +34,10 @@ function SortButtons() {
       </button>
       <button
         className={classnames(styles.button, activeSortButton === 'optimal' && styles.buttonActive)}
-        onClick={() => setActiveSortButton('optimal')}
-        disabled
+        onClick={() => {
+          setActiveSortButton('optimal');
+          dispatch(sortOptimal());
+        }}
       >
         Оптимальные
       </button>
