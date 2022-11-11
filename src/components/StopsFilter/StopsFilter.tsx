@@ -1,13 +1,7 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import {
-  transfersFilterAllStopsToggle,
-  transfersFilterNonStopsToggle,
-  transfersFilterOneStopsToggle,
-  transfersFilterThreeStopsToggle,
-  transfersFilterTwoStopsToggle,
-} from '../../redux/actions/actionCreators';
+import { transfersFilterPropertyToggle } from '../../redux/actions/actionCreators';
 import useTypedSelector from '../../redux/hooks/useTypedSelector';
 import styles from './StopsFilter.module.scss';
 
@@ -29,7 +23,7 @@ const StopsFilter: React.FC = () => {
                 id="all-stops"
                 className={classNames(styles.realCheckbox, 'pseudo-hidden')}
                 checked={transfersForm.isAllStopsChecked}
-                onChange={() => dispatch(transfersFilterAllStopsToggle())}
+                onChange={() => dispatch(transfersFilterPropertyToggle('isAllStopsChecked'))}
                 tabIndex={1}
               />
               <span className={styles.customCheckbox} />
@@ -44,7 +38,7 @@ const StopsFilter: React.FC = () => {
                 id="without-stops"
                 className={classNames(styles.realCheckbox, 'pseudo-hidden')}
                 checked={transfersForm.isNonStopsChecked}
-                onChange={() => dispatch(transfersFilterNonStopsToggle())}
+                onChange={() => dispatch(transfersFilterPropertyToggle('isNonStopsChecked'))}
               />
               <span className={styles.customCheckbox} />
               Без пересадок
@@ -58,7 +52,7 @@ const StopsFilter: React.FC = () => {
                 id="one-stop"
                 className={classNames(styles.realCheckbox, 'pseudo-hidden')}
                 checked={transfersForm.isOneStopsChecked}
-                onChange={() => dispatch(transfersFilterOneStopsToggle())}
+                onChange={() => dispatch(transfersFilterPropertyToggle('isOneStopsChecked'))}
               />
               <span className={styles.customCheckbox} />1 пересадка
             </label>
@@ -71,7 +65,7 @@ const StopsFilter: React.FC = () => {
                 id="two-stops"
                 className={classNames(styles.realCheckbox, 'pseudo-hidden')}
                 checked={transfersForm.isTwoStopsChecked}
-                onChange={() => dispatch(transfersFilterTwoStopsToggle())}
+                onChange={() => dispatch(transfersFilterPropertyToggle('isTwoStopsChecked'))}
               />
               <span className={styles.customCheckbox} />2 пересадки
             </label>
@@ -84,7 +78,7 @@ const StopsFilter: React.FC = () => {
                 id="three-stops"
                 className={classNames(styles.realCheckbox, 'pseudo-hidden')}
                 checked={transfersForm.isThreeStopsChecked}
-                onChange={() => dispatch(transfersFilterThreeStopsToggle())}
+                onChange={() => dispatch(transfersFilterPropertyToggle('isThreeStopsChecked'))}
               />
               <span className={styles.customCheckbox} />3 пересадки
             </label>

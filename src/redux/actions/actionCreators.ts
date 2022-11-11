@@ -1,16 +1,13 @@
 import { Dispatch } from 'redux';
 import { ITicket } from '../../types';
 import { ITicketsAction } from '../reducers/ticketsReducer';
+import { TogglePropertyType } from '../reducers/transfersReducer';
 import {
   SORT_PRICE,
   SORT_SPEED,
   ALL_TICKETS_LOADED,
-  TRANSFERS_FILTER_ALL_STOPS_TOGGLE,
-  TRANSFERS_FILTER_NON_STOPS_TOGGLE,
-  TRANSFERS_FILTER_ONE_STOPS_TOGGLE,
-  TRANSFERS_FILTER_THREE_STOPS_TOGGLE,
-  TRANSFERS_FILTER_TWO_STOPS_TOGGLE,
   FIRST_TICKETS_PACK_LOADED,
+  TRANSFERS_FILTER_PROPERTY_TOGGLE,
   SORT_OPTIMAL,
 } from './actionTypes';
 
@@ -18,12 +15,9 @@ export const sortPrice = () => ({ type: SORT_PRICE });
 export const sortSpeed = () => ({ type: SORT_SPEED });
 export const sortOptimal = () => ({ type: SORT_OPTIMAL });
 
-export const transfersFilterAllStopsToggle = () => ({ type: TRANSFERS_FILTER_ALL_STOPS_TOGGLE });
-export const transfersFilterNonStopsToggle = () => ({ type: TRANSFERS_FILTER_NON_STOPS_TOGGLE });
-export const transfersFilterOneStopsToggle = () => ({ type: TRANSFERS_FILTER_ONE_STOPS_TOGGLE });
-export const transfersFilterTwoStopsToggle = () => ({ type: TRANSFERS_FILTER_TWO_STOPS_TOGGLE });
-export const transfersFilterThreeStopsToggle = () => ({
-  type: TRANSFERS_FILTER_THREE_STOPS_TOGGLE,
+export const transfersFilterPropertyToggle = (property: TogglePropertyType) => ({
+  type: TRANSFERS_FILTER_PROPERTY_TOGGLE,
+  payload: property,
 });
 
 export const ticketsLoad = () => async (dispatch: Dispatch<ITicketsAction>) => {

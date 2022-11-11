@@ -1,13 +1,15 @@
-import {
-  TRANSFERS_FILTER_ALL_STOPS_TOGGLE,
-  TRANSFERS_FILTER_NON_STOPS_TOGGLE,
-  TRANSFERS_FILTER_ONE_STOPS_TOGGLE,
-  TRANSFERS_FILTER_TWO_STOPS_TOGGLE,
-  TRANSFERS_FILTER_THREE_STOPS_TOGGLE,
-} from '../actions/actionTypes';
+import { TRANSFERS_FILTER_PROPERTY_TOGGLE } from '../actions/actionTypes';
+
+export type TogglePropertyType =
+  | 'isAllStopsChecked'
+  | 'isNonStopsChecked'
+  | 'isOneStopsChecked'
+  | 'isTwoStopsChecked'
+  | 'isThreeStopsChecked';
 
 interface IAction {
   type: string;
+  payload: TogglePropertyType;
 }
 
 interface IState {
@@ -25,13 +27,6 @@ const initialState: IState = {
   isTwoStopsChecked: true,
   isThreeStopsChecked: true,
 };
-
-type TogglePropertyType =
-  | 'isAllStopsChecked'
-  | 'isNonStopsChecked'
-  | 'isOneStopsChecked'
-  | 'isTwoStopsChecked'
-  | 'isThreeStopsChecked';
 
 function transfersReducer(state = initialState, action: IAction): IState {
   const toggleProperty = (property: TogglePropertyType) => {
@@ -79,20 +74,8 @@ function transfersReducer(state = initialState, action: IAction): IState {
   };
 
   switch (action.type) {
-    case TRANSFERS_FILTER_ALL_STOPS_TOGGLE:
-      return toggleProperty('isAllStopsChecked');
-
-    case TRANSFERS_FILTER_NON_STOPS_TOGGLE:
-      return toggleProperty('isNonStopsChecked');
-
-    case TRANSFERS_FILTER_ONE_STOPS_TOGGLE:
-      return toggleProperty('isOneStopsChecked');
-
-    case TRANSFERS_FILTER_TWO_STOPS_TOGGLE:
-      return toggleProperty('isTwoStopsChecked');
-
-    case TRANSFERS_FILTER_THREE_STOPS_TOGGLE:
-      return toggleProperty('isThreeStopsChecked');
+    case TRANSFERS_FILTER_PROPERTY_TOGGLE:
+      return toggleProperty(action.payload);
 
     default:
       return state;
