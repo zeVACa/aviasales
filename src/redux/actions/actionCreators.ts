@@ -23,8 +23,8 @@ export const transfersFilterPropertyToggle = (property: TogglePropertyType) => (
 export const ticketsLoad = () => async (dispatch: Dispatch<ITicketsAction>) => {
   const allTickets: ITicket[] = [];
 
-  const searchIdresponse = await fetch('https://front-test.dev.aviasales.ru/search');
-  const { searchId } = await searchIdresponse.json();
+  const searchIdResponse = await fetch('https://aviasales-test-api.kata.academy/search');
+  const { searchId } = await searchIdResponse.json();
 
   let isNotLastTicketsPack = true;
   let isFirstTicketsPackLoaded = false;
@@ -32,7 +32,7 @@ export const ticketsLoad = () => async (dispatch: Dispatch<ITicketsAction>) => {
     /* eslint-disable no-await-in-loop */
 
     const ticketsResponse = await fetch(
-      `https://front-test.dev.aviasales.ru/tickets??searchId=${searchId}`,
+      `https://aviasales-test-api.kata.academy/tickets?searchId=${searchId}`,
     );
 
     /* eslint-disable no-continue */
